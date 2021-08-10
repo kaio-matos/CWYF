@@ -10,7 +10,7 @@ if (login_form) {
       password: login_form["password"].value,
     };
 
-    dealWithLoginRegister("login", dataForm);
+    dealWithLoginRegister(dataForm);
   });
 }
 if (register_form) {
@@ -23,11 +23,11 @@ if (register_form) {
       password: register_form["password"].value,
     };
 
-    dealWithLoginRegister("register", dataForm);
+    dealWithLoginRegister(dataForm);
   });
 }
 
-async function dealWithLoginRegister(route, dataForm) {
+async function dealWithLoginRegister(dataForm) {
   let url = window.location.href;
 
   const fetchResponse = await fetch(url, {
@@ -46,8 +46,13 @@ async function dealWithLoginRegister(route, dataForm) {
 
   const data = await fetchResponse.json();
   warning(data.message, data.error);
+
   if (data.error === "") {
-    window.location.href = "/room";
+    if (dataForm.name) {
+      window.location.href = "/login";
+    } else {
+      window.location.href = "/room";
+    }
   }
 }
 
