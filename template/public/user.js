@@ -28,7 +28,7 @@ if (register_form) {
 }
 
 async function dealWithLoginRegister(route, dataForm) {
-  let url = `${window.location.href}/${route}`;
+  let url = window.location.href};
 
   const fetchResponse = await fetch(url, {
     method: "POST",
