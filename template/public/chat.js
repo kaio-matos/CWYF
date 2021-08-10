@@ -1,4 +1,4 @@
-socket = io(window.location.href + "/room");
+socket = io(window.location.href);
 
 const form_message = document.querySelector("#form_message");
 
