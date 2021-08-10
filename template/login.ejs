@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <%- include("partials/bootstrap")%>
+
+    <title>CWYF</title>
+  </head>
+  <body>
+    <%- include("partials/header")%>
+    <main class="container mt-5">
+      <h1>Login</h1>
+      <form id="login_form" name="login_form">
+        <div class="mb-3">
+          <label class="form-label" for="email">Email</label>
+          <input
+            id="email"
+            class="form-control"
+            type="email"
+            name="email"
+            placeholder="example@hotmail.com"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="password">Password</label>
+          <input
+            id="password"
+            class="form-control"
+            type="password"
+            name="password"
+            placeholder="Password"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Enter</button>
+      </form>
+
+      <div class="warning_message"></div>
+    </main>
+
+    <script src="./warning.js"></script>
+    <script src="./user.js"></script>
+  </body>
+</html>

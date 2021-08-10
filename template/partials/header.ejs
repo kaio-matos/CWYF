@@ -1,0 +1,47 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-dark x">
+    <div class="container">
+      <a class="navbar-brand text-light" href="/">CWYF</a>
+
+      <button
+        class="navbar-toggler bg-light"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div
+        class="collapse navbar-collapse justify-content-between"
+        id="navbarSupportedContent"
+      >
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link text-light active" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="/room">Room</a>
+          </li>
+        </ul>
+
+        <div class="d-flex gap-1">
+          <a class="btn btn-outline-primary text-light" href="/login">Login </a>
+          <a class="btn btn-outline-primary text-light" href="/register"
+            >Register
+          </a>
+          <button
+            onclick="logout()"
+            class="btn btn-outline-danger text-light"
+            href="/register"
+          >
+            Logout
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <%- include("partials/bootstrap")%>
+
+    <title>CWYF</title>
+  </head>
+  <body>
+    <%- include("partials/header")%>
+
+    <main class="container mt-5">
+      <h1>Register</h1>
+      <form id="register_form" action="/register" method="POST">
+        <div class="mb-3">
+          <label class="form-label" for="name">Name</label>
+          <input
+            id="name"
+            class="form-control"
+            type="text"
+            name="name"
+            placeholder="Josivaldo"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="email">Email</label>
+          <input
+            id="email"
+            class="form-control"
+            type="email"
+            name="email"
+            placeholder="example@hotmail.com"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="password">Password</label>
+          <input
+            id="password"
+            class="form-control"
+            type="password"
+            name="password"
+            placeholder="Password"
+          />
+        </div>
+
+        <div class="warning_message"></div>
+        <button class="btn btn-primary">Register</button>
+      </form>
+    </main>
+
+    <script src="./warning.js"></script>
+    <script src="./user.js"></script>
+  </body>
+</html>
