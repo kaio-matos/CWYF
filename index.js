@@ -4,13 +4,15 @@ const express = require("express");
 const socketIO = require("socket.io");
 const mongoose = require("mongoose");
 const path = require("path");
-const jwt = require("jsonwebtoken");
 
 const app = express();
 const userRouter = require("./routes/userRouter");
 const routes = require("./routes/routes");
-const User = require("./models/User");
-const Message = require("./models/Message");
+const {
+  storeMessage,
+  getAllMessages,
+  checkUser,
+} = require("./controllers/messageController");
 
 mongoose.connect(
   process.env.MONGO_CONNECTION_URL,
@@ -85,37 +87,3 @@ io.of("/room").on("connection", async (socket) => {
     io.of("/room").emit("server_messages", allMessages);
   });
 });
-
-async function checkUser(token) {
-  try {
-    const { _id } = jwt.verify(token, process.env.TOKEN_JWT);
-    const user = await User.findOne({ _id });
-    return user;
-  } catch (err) {
-    return undefined;
-  }
-}
-
-async function storeMessage(message, email, name) {
-  const newMessage = new Message({
-    message,
-    email,
-    name,
-  });
-
-  try {
-    const savedMessage = await newMessage.save();
-    return savedMessage;
-  } catch (error) {
-    return undefined;
-  }
-}
-
-async function getAllMessages() {
-  try {
-    const allMessages = await Message.find({});
-    return allMessages;
-  } catch (err) {
-    return undefined;
-  }
-}
