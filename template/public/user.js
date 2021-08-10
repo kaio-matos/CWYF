@@ -28,14 +28,8 @@ if (register_form) {
 }
 
 async function dealWithLoginRegister(route, dataForm) {
-  let url = "";
-  if (window.location.href === `http://192.168.15.8:3000/${route}`) {
-    url = `http://192.168.15.8:3000/${route}`;
-  } else {
-    url = `http://localhost:3000/${route}`;
-  }
+  let url = `${window.location.href}/${route}`;
 
-  console.log(url);
   const fetchResponse = await fetch(url, {
     method: "POST",
     body: JSON.stringify(dataForm),

@@ -1,11 +1,4 @@
-let url = "";
-console.log(window.location.href);
-if (window.location.href === `http://192.168.15.8:3000/room`) {
-  url = `http://192.168.15.8:3000/room`;
-} else {
-  url = `http://localhost:3000/room`;
-}
-socket = io(url);
+socket = io(window.location.href + "/room");
 
 const form_message = document.querySelector("#form_message");
 
