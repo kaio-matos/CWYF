@@ -75,4 +75,21 @@ module.exports = {
       error: "",
     });
   },
+  async myaccount(req, res) {
+    const { token } = req.body;
+    if (!token)
+      return res.status(400).json({
+        name: "Please login",
+        email: "Please login",
+      });
+
+    const { _id } = jwt.verify(token, process.env.TOKEN_JWT);
+
+    try {
+      const accountData = await User.findById({ _id });
+      res.status(200).json(accountData);
+    } catch (error) {
+      res.status(400).json(error);
+    }
+  },
 };

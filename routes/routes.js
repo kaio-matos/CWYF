@@ -18,5 +18,8 @@ router.get("/register", (req, res) => {
 router.get("/room", (req, res) => {
   res.render("room", defaultMessage);
 });
+router.get("/myaccount", (req, res) => {
+  res.render("myaccount", defaultMessage);
+});
 
 module.exports = router;
