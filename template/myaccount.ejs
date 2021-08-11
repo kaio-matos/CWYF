@@ -12,7 +12,7 @@
   <body>
     <%- include("partials/header")%>
 
-    <main class="container">
+    <main class="container-fluid px-5">
       <section>
         <form id="form_addNewFriend" class="input-group mb-3 mt-3">
           <input
@@ -24,13 +24,14 @@
             aria-describedby="friendEmail"
             autocomplete="off"
           />
-          <button class="btn btn-primary" type="submit" id="add">
+          <button class="btn btn-primary" type="submit" id="addNewFriend">
             Add new friend
           </button>
         </form>
+        <div class="warning_message"></div>
       </section>
-      <section class="m-auto gap-2 row mt-5 w-100">
-        <div class="col">
+      <section class="row m-auto gap-2 mt-5 w-100">
+        <div class="col-md">
           <div id="userData">
             <h1>Name</h1>
             <p>Email</p>
@@ -38,47 +39,14 @@
 
           <div class="mt-5">
             <h2>Friends</h2>
-            <ul id="userFriends">
-              <li class="row">
-                <hr class="mb-2" />
-                <span
-                  class="col d-flex justify-content-center align-items-center"
-                  >João</span
-                >
-                <button class="col btn btn-primary">Talk</button>
-                <hr class="mt-2" />
-              </li>
-              <li class="row">
-                <hr class="mb-2" />
-                <span
-                  class="col d-flex justify-content-center align-items-center"
-                  >João</span
-                >
-                <button class="col btn btn-primary">Talk</button>
-                <hr class="mt-2" />
-              </li>
-              <li class="row">
-                <hr class="mb-2" />
-                <span
-                  class="col d-flex justify-content-center align-items-center"
-                  >João</span
-                >
-                <button class="col btn btn-primary">Talk</button>
-                <hr class="mt-2" />
-              </li>
-              <li class="row">
-                <hr class="mb-2" />
-                <span
-                  class="col d-flex justify-content-center align-items-center"
-                  >João</span
-                >
-                <button class="col btn btn-primary">Talk</button>
-                <hr class="mt-2" />
-              </li>
-            </ul>
+            <ul
+              style="max-height: 50vh; overflow-y: scroll"
+              id="userFriends"
+              class="p-0"
+            ></ul>
           </div>
         </div>
-        <div class="col"><%- include("partials/chat")%></div>
+        <div class="col-md"><%- include("partials/chat")%></div>
       </section>
     </main>
 

@@ -1,4 +1,5 @@
 const Joi = require("@hapi/joi");
+const jwt = require("jsonwebtoken");
 
 module.exports = {
   /**
@@ -28,5 +29,11 @@ module.exports = {
     });
 
     return schema.validate(data);
+  },
+
+  tokenValidate(token) {
+    if (!token) return false;
+    const { _id } = jwt.verify(token, process.env.TOKEN_JWT);
+    return _id;
   },
 };

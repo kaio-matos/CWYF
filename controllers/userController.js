@@ -78,7 +78,7 @@ module.exports = {
   async myaccount(req, res) {
     const { token } = req.body;
     if (!token)
-      return res.status(400).json({
+      return res.json({
         name: "Please login",
         email: "Please login",
       });

@@ -13,6 +13,10 @@ const {
   getAllMessages,
   checkUser,
 } = require("./controllers/messageController");
+const {
+  addNewFriend,
+  deleteFriend,
+} = require("./controllers/friendController");
 
 mongoose.connect(
   process.env.MONGO_CONNECTION_URL,
@@ -85,5 +89,23 @@ io.of("/room").on("connection", async (socket) => {
     }
 
     io.of("/room").emit("server_messages", allMessages);
+  });
+});
+
+io.of("/myaccount").on("connection", async (socket) => {
+  socket.on("add_friend", async ({ friendEmail, token }) => {
+    const result = await addNewFriend(friendEmail, token);
+    if (result.error) {
+      return socket.emit("error", result.error);
+    }
+    io.of("/myaccount").emit("friend_loaded", result);
+  });
+
+  socket.on("delete_friend", async ({ friendEmail, token }) => {
+    const result = await deleteFriend(friendEmail, token);
+    if (result.error) {
+      return socket.emit("error", result.error);
+    }
+    io.of("/myaccount").emit("friend_deleted", result);
   });
 });

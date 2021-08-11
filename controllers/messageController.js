@@ -5,7 +5,9 @@ const { Message } = require("../models/Message");
 module.exports = {
   async checkUser(token) {
     try {
-      const { _id } = jwt.verify(token, process.env.TOKEN_JWT);
+      const _id = tokenValidate(token);
+      if (!_id) return;
+
       const user = await User.findOne({ _id });
       return user;
     } catch (err) {

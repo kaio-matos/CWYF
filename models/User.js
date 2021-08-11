@@ -7,8 +7,9 @@ const user = new mongoose.Schema({
   friends: {
     type: [
       {
+        name: { type: String, required: true, minlength: 3 },
         email: { type: String, required: true, minlength: 3 },
-        _chatID: Number,
+        _chatID: String,
       },
     ],
     default: [],

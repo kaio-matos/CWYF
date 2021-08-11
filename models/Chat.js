@@ -3,8 +3,8 @@ const { message } = require("./Message");
 
 // User characteristics
 const chat = new mongoose.Schema({
-  messages: { type: [message], default: [""] },
-  participants: { type: [String], default: [""] },
+  messages: { type: [message], default: [] },
+  participants: { type: [String], required: true, minlength: 2 },
 });
 
 // Collection Model

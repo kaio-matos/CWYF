@@ -59,4 +59,5 @@ async function dealWithLoginRegister(dataForm) {
 function logout() {
   localStorage.clear();
   window.location.href = window.location.href;
+  console.log(window.location.href);
 }
