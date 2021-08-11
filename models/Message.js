@@ -11,4 +11,4 @@ const message = new mongoose.Schema({
 // Collection Model
 const Message = mongoose.model("Message", message);
 
-module.exports = Message;
+module.exports = { Message, message };

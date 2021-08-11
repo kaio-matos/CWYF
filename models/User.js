@@ -4,6 +4,15 @@ const mongoose = require("mongoose");
 const user = new mongoose.Schema({
   name: { type: String, required: true, minlength: 3 },
   email: { type: String, required: true, minlength: 3 },
+  friends: {
+    type: [
+      {
+        email: { type: String, required: true, minlength: 3 },
+        _chatID: Number,
+      },
+    ],
+    default: [],
+  },
   password: { type: String, required: true, minlength: 6 },
 });
 
