@@ -185,7 +185,7 @@ function sendPrivateMessage(msg) {
   const storage_chatID = localStorage.getItem("storage_chatID");
 
   if (!storage_token) return warning("", "Please login");
-  if (!storage_chatID) return warning("", "Please select a user");
+  if (!storage_chatID) return warning("", "Please select a friend");
 
   socket.emit("private_message", {
     socketID: socket.id,
