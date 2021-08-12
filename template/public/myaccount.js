@@ -130,7 +130,7 @@ function addNewFriend(e) {
 socket.on("friend_loaded", getUserData);
 
 function deleteFriend(e) {
-  const li = e.target.parentElement;
+  const li = e.target.parentElement.parentElement;
   const span = li.children[1];
   const email = span.children[1].innerText;
 
