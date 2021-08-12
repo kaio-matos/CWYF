@@ -17,6 +17,10 @@ const {
   addNewFriend,
   deleteFriend,
 } = require("./controllers/friendController");
+const {
+  getPrivateChat,
+  storePrivateMessage,
+} = require("./controllers/privateMessageController");
 
 mongoose.connect(
   process.env.MONGO_CONNECTION_URL,
@@ -98,7 +102,10 @@ io.of("/myaccount").on("connection", async (socket) => {
     if (result.error) {
       return socket.emit("error", result.error);
     }
-    io.of("/myaccount").emit("friend_loaded", result);
+    if (result.message) {
+      socket.emit("friend_loaded", result);
+      return socket.emit("message", result.message);
+    }
   });
 
   socket.on("delete_friend", async ({ friendEmail, token }) => {
@@ -106,6 +113,31 @@ io.of("/myaccount").on("connection", async (socket) => {
     if (result.error) {
       return socket.emit("error", result.error);
     }
-    io.of("/myaccount").emit("friend_deleted", result);
+    if (result.message) {
+      socket.emit("friend_deleted", result);
+      return socket.emit("message", result.message);
+    }
+  });
+
+  socket.on("private_chat", async ({ friendEmail, token }) => {
+    const result = await getPrivateChat(friendEmail, token);
+    if (result.error) {
+      return socket.emit("error", result.error);
+    }
+    if (result.CHAT) {
+      socket.join("chatID: " + result.CHAT._id);
+      return socket.emit("update_chat", result.CHAT);
+    }
+  });
+
+  socket.on("private_message", async ({ socketID, chatID, msg, token }) => {
+    const result = await storePrivateMessage(msg, chatID, token);
+    if (result.error) {
+      return socket.emit("error", result.error);
+    }
+    if (result.CHAT) {
+      socket.to("chatID: " + result.CHAT._id).emit("update_chat", result.CHAT);
+      return socket.emit("update_chat", result.CHAT);
+    }
   });
 });

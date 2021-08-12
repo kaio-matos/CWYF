@@ -1,6 +1,6 @@
-const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const { Message } = require("../models/Message");
+const { tokenValidate } = require("./validateUser");
 
 module.exports = {
   async checkUser(token) {
@@ -11,6 +11,7 @@ module.exports = {
       const user = await User.findOne({ _id });
       return user;
     } catch (err) {
+      console.log(err);
       return undefined;
     }
   },
@@ -26,6 +27,7 @@ module.exports = {
       const savedMessage = await newMessage.save();
       return savedMessage;
     } catch (error) {
+      console.log(err);
       return undefined;
     }
   },
@@ -35,6 +37,7 @@ module.exports = {
       const allMessages = await Message.find({});
       return allMessages;
     } catch (err) {
+      console.log(err);
       return undefined;
     }
   },
